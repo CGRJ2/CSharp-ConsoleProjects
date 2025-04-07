@@ -9,6 +9,11 @@ namespace miniGame_OOP_Project
 {
     class TitleScene : Scene
     {
+        public TitleScene()
+        {
+            mapData = null;
+        }
+
         public override void Print()
         {
             Console.Clear();

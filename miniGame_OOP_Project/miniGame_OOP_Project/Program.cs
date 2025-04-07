@@ -47,7 +47,8 @@ namespace miniGame_OOP_Project
 
         static void Main(string[] args)
         {
-            Console.WriteLine("□□□□□□■□□□□");
+            Console.WriteLine("▒▒▒▒▒  ▒▒▒▒");
+            Console.WriteLine("▒▒▒▒▒▒▒▒▒▒▒");
         }
     }
 }

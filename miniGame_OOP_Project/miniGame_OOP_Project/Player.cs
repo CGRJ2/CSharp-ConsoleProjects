@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace miniGame_OOP_Project
 {
@@ -16,22 +11,63 @@ namespace miniGame_OOP_Project
     public class Player
     {
         private Position playerPos;
+        private nowMapData;
 
         private string name_P;
         private int hp;
         private int mp;
 
 
-        public void Move(int x, int y)
+        public void Move(ConsoleKey key)
         {
+            int x = 0;
+            int y = 0;
+            switch (key)
+            {
+                case ConsoleKey.A:
+                case ConsoleKey.LeftArrow:
+                    //if (mapData.mapping[playerPos.y, playerPos.x - 1] == ' ')
+                    //{
+                        playerPos.x--;
+                    //}
+                    break;
+                case ConsoleKey.D:
+                case ConsoleKey.RightArrow:
+                    //if (mapData.mapping[playerPos.y, playerPos.x + 1] == ' ')
+                    //{
+                        playerPos.x++;
+                    //}
+                    break;
+                case ConsoleKey.W:
+                case ConsoleKey.UpArrow:
+                    //if (mapData.mapping[playerPos.y - 1, playerPos.x] == ' ')
+                    //{
+                        playerPos.y--;
+                    //}
+                    break;
+                case ConsoleKey.S:
+                case ConsoleKey.DownArrow:
+                    //if (mapData.mapping[playerPos.y + 1, playerPos.x] == ' ')
+                    //{
+                        playerPos.y++;
+                    //}
+                    break;
+            }
             playerPos = new Position(x, y);
+        }
+
+        public void RenderPlayer()
+        {
+            // 플레이어 위치에 플레이어 출력
         }
 
         public void PrintPlayerState()
         {
 
         }
-         
+
+
+
     }
 
 
