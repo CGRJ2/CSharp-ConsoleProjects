@@ -37,22 +37,22 @@ namespace miniGame_OOP_Project
             {
                 case ConsoleKey.A:
                 case ConsoleKey.LeftArrow:
-                    if (GameManager.Instance.mapInstance.checkWays[playerPos.y, playerPos.x--] == false) return;
+                    if (GameManager.Instance.mapInstance.checkWays[playerPos.y, playerPos.x-1] == false) return;
                         playerPos.x--;
                     break;
                 case ConsoleKey.D:
                 case ConsoleKey.RightArrow:
-                    if (GameManager.Instance.mapInstance.checkWays[playerPos.y, playerPos.x++] == false) return;
+                    if (GameManager.Instance.mapInstance.checkWays[playerPos.y, playerPos.x+1] == false) return;
                     playerPos.x++;
                     break;
                 case ConsoleKey.W:
                 case ConsoleKey.UpArrow:
-                    if (GameManager.Instance.mapInstance.checkWays[playerPos.y--, playerPos.x] == false) return;
+                    if (GameManager.Instance.mapInstance.checkWays[playerPos.y-1, playerPos.x] == false) return;
                     playerPos.y--;
                     break;
                 case ConsoleKey.S:
                 case ConsoleKey.DownArrow:
-                    if (GameManager.Instance.mapInstance.checkWays[playerPos.y++, playerPos.x] == false) return;
+                    if (GameManager.Instance.mapInstance.checkWays[playerPos.y+1, playerPos.x] == false) return;
                     playerPos.y++;
                     break;
             }

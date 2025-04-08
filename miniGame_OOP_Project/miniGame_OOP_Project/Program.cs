@@ -52,7 +52,6 @@ namespace miniGame_OOP_Project
             while (true)
             {
                 GameManager.Instance.Update();
-
             }
         }
     }

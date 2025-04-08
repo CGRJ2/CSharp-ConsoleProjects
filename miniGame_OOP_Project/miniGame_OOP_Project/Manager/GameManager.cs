@@ -35,8 +35,6 @@ namespace miniGame_OOP_Project
             player.Print();
             ConsoleKey key = Console.ReadKey(true).Key;
             player.Move(key);
-            
-
         }
 
         // 계속 움직이는거 출력용. 기존 커서 지우고 새 커서 작성
