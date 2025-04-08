@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace miniGame_OOP_Project
 {
-    class Portal
+    class IngameScene
     {
-        Position PortalPos;
-        Position outPos;
-        Map outMap;
     }
 }

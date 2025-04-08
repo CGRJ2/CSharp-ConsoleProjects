@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace miniGame_OOP_Project
 {
     // 맵을 담는 역할만 하자.
-    public class Map
+    public class MapData
     {
         string name;
         string[,] tileMap;
 
-        public Map(string name, string[,] tileMap)
+        public MapData(string name, string[,] tileMap)
         {
             this.name = name;
             this.tileMap = tileMap;
@@ -30,16 +30,16 @@ namespace miniGame_OOP_Project
         }
     }
 
-    public class MapData
+    public class MapDic
     {
         // 싱글톤 저장소 (전역으로 하는게 나을라나?)
-        private static MapData instance;
-        public static MapData Instance { get { if (instance == null) instance = new MapData(); return instance; } }
+        private static MapDic instance;
+        public static MapDic Instance { get { if (instance == null) instance = new MapDic(); return instance; } }
 
-        Dictionary<string, Map> tileMapDatas = new Dictionary<string, Map>();
+        Dictionary<string, MapData> tileMapDatas = new Dictionary<string, MapData>();
 
         // 인스턴스 딱 하나 만들건데, 그때 타일 정보들 전부 저장해두기
-        private MapData()
+        private MapDic()
         {
             // 이름과 타일맵 정보 추가
             AddMap("test1", new string[10, 15]
@@ -72,15 +72,36 @@ namespace miniGame_OOP_Project
                 /*8*/ { "■", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",  "■" },
                 /*9*/ { "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■" },
             });
+
+            // 야외 필드
+            AddMap("Field", new string[15, 15]
+            {
+                //       0     1     2     3     4     5     6     7     8     9     10    11    12    13    14
+                /*0*/ { "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■" },
+                /*1*/ { "■", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",  "■" },
+                /*2*/ { "■", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",  "■" },
+                /*3*/ { "■", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",  "■" },
+                /*4*/ { "■", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",  "■" },
+                /*5*/ { "■", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",  "■" },
+                /*6*/ { "■", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",  "■" },
+                /*7*/ { "■", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",  "■" },
+                /*9*/ { "■", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",  "■" },
+               /*10*/ { "■", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",  "■" },
+               /*11*/ { "■", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",  "■" },
+               /*12*/ { "■", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",  "■" },
+               /*13*/ { "■", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",  "■" },
+               /*14*/ { "■", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",  "■" },
+               /*15*/ { "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■",  "■" },
+            });
         }
 
         public void AddMap(string name, string[,] tileMap)
         {
-            tileMapDatas[name] = new Map(name, tileMap);
+            tileMapDatas[name] = new MapData(name, tileMap);
         }
 
         // Map을 반환하는 함수
-        public Map GetMap(string name)
+        public MapData GetMap(string name)
         {
             return tileMapDatas[name];
         }

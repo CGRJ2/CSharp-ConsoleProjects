@@ -17,19 +17,24 @@ namespace miniGame_OOP_Project
         private int hp;
         private int mp;
 
+        public Player(Position playerPos, string name_P, int hp, int mp)
+        {
+            this.playerPos = playerPos;
+            this.name_P = name_P;
+            this.hp = hp;
+            this.mp = mp;
+        }
 
+        // 이동과 출력을 동시에
         public void Move(ConsoleKey key)
         {
-            int x = 0;
-            int y = 0;
+            Console.SetCursorPosition(playerPos.x, playerPos.y);
+            Console.Write(" ");
             switch (key)
             {
                 case ConsoleKey.A:
                 case ConsoleKey.LeftArrow:
-                    //if (mapData.mapping[playerPos.y, playerPos.x - 1] == ' ')
-                    //{
                         playerPos.x--;
-                    //}
                     break;
                 case ConsoleKey.D:
                 case ConsoleKey.RightArrow:
@@ -53,13 +58,13 @@ namespace miniGame_OOP_Project
                     //}
                     break;
             }
-            playerPos = new Position(x, y);
+            Console.SetCursorPosition(playerPos.x, playerPos.y);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("P");
+            Console.ResetColor();
         }
 
-        public void RenderPlayer()
-        {
-            // 플레이어 위치에 플레이어 출력
-        }
+        
 
         public void PrintPlayerState()
         {

@@ -26,7 +26,7 @@ namespace miniGame_OOP_Project
         {
             // 이렇게 추가. 씬별로 Scene클래스의 자식으로 상속해 사용.
             { "TitleScene", new TitleScene()},
-
+            { "IngameScene", new TitleScene()},
         };
 
 
