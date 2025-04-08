@@ -38,6 +38,7 @@ namespace miniGame_OOP_Project
                     break;
             }
 
+            // 맵 인스턴스 만들 때 마다 콘솔 초기화 후 맵타일 출력. 맵요소 정보 새로 저장
             checkWays = CheckWays_Fixed();
             Print();
         }

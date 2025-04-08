@@ -27,7 +27,6 @@ namespace miniGame_OOP_Project
             Console.CursorVisible = false;
             SceneManager.Instance.LoadScene("TitleScene");
             mapInstance = new MapInstance("Village");
-
         }
 
         public void Update()
@@ -46,12 +45,6 @@ namespace miniGame_OOP_Project
 
         }
 
-        // 맵 구성요소 한번만 출력.
-        // 맵이 바뀌거나 할때 초기에 한번 호출.
-        public void BackgroundRender()
-        {
-            
-        }
 
     }
 

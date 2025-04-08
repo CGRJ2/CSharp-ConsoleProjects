@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace miniGame_OOP_Project
 {
-    
+
     // 씬 구성
     // 1. 타이틀
     // 2. 인게임
-    // 3. 이동씬
-    // 4. 전투씬
-    // 5. 퀘스트씬
+    // 3. 대화씬
+
+    // 씬별로 인풋과 UI를 다르게 구성해야할듯. 구조 수정하자.
 
     abstract class Scene
     {
