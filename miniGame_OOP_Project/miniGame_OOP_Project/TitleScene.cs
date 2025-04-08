@@ -11,8 +11,9 @@ namespace miniGame_OOP_Project
     {
         public TitleScene()
         {
-            mapData = null;
+
         }
+
 
         public override void Print()
         {

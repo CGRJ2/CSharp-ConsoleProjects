@@ -11,7 +11,7 @@ namespace miniGame_OOP_Project
     public class Player
     {
         private Position playerPos;
-        private nowMapData;
+        //private nowMapData;
 
         private string name_P;
         private int hp;

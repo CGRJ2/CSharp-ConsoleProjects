@@ -14,6 +14,8 @@ namespace miniGame_OOP_Project
         static GameManager instance;
         public static GameManager Instance { get { if (instance == null) instance = new GameManager(); return instance; } }
 
+        
+
         public static void Awake()
         {
 
@@ -27,6 +29,9 @@ namespace miniGame_OOP_Project
         }
 
     }
+
+    
+
 
     public struct Position
     {
