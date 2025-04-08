@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace miniGame_OOP_Project
 {
-    class Portal
+    class Portal : IInteractable
     {
-        Position PortalPos;
+        public Position PortalPos;
         Position outPos;
         string outMap;
 
@@ -23,14 +23,15 @@ namespace miniGame_OOP_Project
         {
             Console.SetCursorPosition(PortalPos.x, PortalPos.y);
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write("◎");
+            Console.Write("@");
             Console.ResetColor();
         }
 
         // 포탈 상호작용 => 맵 이동
         public void Interact()
         {
-
+            GameManager.Instance.mapInstance = new MapInstance(outMap);
+            GameManager.Instance.player.playerPos = outPos;
         }
     }
 }

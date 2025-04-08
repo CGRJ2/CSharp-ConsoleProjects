@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces.cs" />
     <Compile Include="Manager\GameManager.cs" />
     <Compile Include="Scene\IngameScene.cs" />
     <Compile Include="MapData\MapInstance.cs" />

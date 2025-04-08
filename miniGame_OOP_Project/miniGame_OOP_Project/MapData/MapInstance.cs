@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 
 namespace miniGame_OOP_Project
 {
+    enum tileType
+    {
+        wall, portal, npc, monster, empty
+    }
+
     // 현재 맵 인스턴스 생성
     class MapInstance
     {
         public MapData nowMap;
         public List<Portal> portals = new List<Portal>();
-        public bool[,] checkWays;
+
+        public tileType[,] checkWays;
 
         // 이름으로 맵 인스턴스 만들어주기.
         // 맵별로 포털, npc, 몬스터 구성 정리
@@ -21,36 +27,46 @@ namespace miniGame_OOP_Project
             {
                 case "Village" :
                     nowMap = MapDic.Instance.GetMap("Village");
-                    portals.Add(new Portal(new Position(3, 4), new Position(2, 2), "Field"));
+                    portals.Add(new Portal(new Position(13, 2), new Position(1 +1, 2), "Field")); // 나올때 오른쪽으로 나옴 +1
                     // 포탈 필요하면 더 추가
                     // npc 추가
                     // monster 추가
                     break;
                 case "Field":
                     nowMap = MapDic.Instance.GetMap("Field");
-                    portals.Add(new Portal(new Position(2, 2), new Position(3, 4), "Village"));
+                    portals.Add(new Portal(new Position(1, 2), new Position(13 -1, 2), "Village")); // 나올때 왼쪽으로 나옴 -1
                     break;
             }
 
             checkWays = CheckWays_Fixed();
+            Print();
         }
 
-        // 맵 안에서 이동 불가능 영역 체크 
-        public bool[,] CheckWays_Fixed()
+        // 맵 인스턴스 생성 시 단 한번만 호출
+        // 맵 안 요소 체크 
+        public tileType[,] CheckWays_Fixed()
         {
-            bool[,] ways = new bool[nowMap.tileMap.GetLength(0), nowMap.tileMap.GetLength(1)];
+            tileType[,] ways = new tileType[nowMap.tileMap.GetLength(0), nowMap.tileMap.GetLength(1)];
 
+            // 벽과 빈 공간
             for (int y = 0; y < nowMap.tileMap.GetLength(0); y++)
             {
                 for (int x = 0; x < nowMap.tileMap.GetLength(1); x++)
                 {
-                    if (nowMap.tileMap[y, x] == " ") ways[y, x] = true;
-                    else ways[y, x] = false;
+                    if (nowMap.tileMap[y, x] == " ") ways[y, x] = tileType.empty;
+                    else ways[y, x] = tileType.wall;
                 }
             }
 
-            // npc 위치는 false
-            // monster 위치는 false
+            // 포탈 위치 
+            for (int i = 0; i < portals.Count; i++)
+            {
+                ways[portals[i].PortalPos.y, portals[i].PortalPos.x] = tileType.portal;
+            }
+
+            // npc 위치는 tileType.wall
+
+            // monster 위치는 tileType.monster
 
             return ways;
         }
@@ -68,6 +84,9 @@ namespace miniGame_OOP_Project
 
         public void Print()
         {
+            Console.Clear();
+            nowMap.PrintMap();
+
             for (int i = 0; i < portals.Count; i++)
             {
                 portals[i].PrintPortal();

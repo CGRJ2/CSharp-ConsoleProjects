@@ -14,7 +14,7 @@ namespace miniGame_OOP_Project
         static GameManager instance;
         public static GameManager Instance { get { if (instance == null) instance = new GameManager(); return instance; } }
         
-        // 초기 세팅
+        // 초기 플레이어 위치
         public Player player = new Player(new Position(6,2), "기본이름", 100, 100);
         public MapInstance mapInstance;
         
@@ -23,8 +23,11 @@ namespace miniGame_OOP_Project
 
         public void Awake()
         {
+            // 초기 설정
+            Console.CursorVisible = false;
             SceneManager.Instance.LoadScene("TitleScene");
-            // 여기서 인스턴스가 생겨야하는데.
+            mapInstance = new MapInstance("Village");
+
         }
 
         public void Update()

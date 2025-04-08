@@ -19,7 +19,7 @@ namespace miniGame_OOP_Project
             this.tileMap = tileMap;
         }
 
-        public void PrinfMap()
+        public void PrintMap()
         {
             for (int y = 0; y < tileMap.GetLength(0); y++)
             {

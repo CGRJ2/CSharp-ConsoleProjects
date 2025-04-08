@@ -42,7 +42,10 @@ namespace miniGame_OOP_Project
                     break;
                 case ConsoleKey.D4:
                     return;
-
+                default:
+                    Console.WriteLine("제대로된 값을 입력하세요...");
+                    Input();
+                    break;
             }
         }
     }
