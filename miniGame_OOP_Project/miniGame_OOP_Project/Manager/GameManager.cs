@@ -23,7 +23,8 @@ namespace miniGame_OOP_Project
 
         public void Awake()
         {
-            SceneManager.LoadScene("TitleScene");
+            SceneManager.Instance.LoadScene("TitleScene");
+            // 여기서 인스턴스가 생겨야하는데.
         }
 
         public void Update()

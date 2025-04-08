@@ -38,7 +38,7 @@ namespace miniGame_OOP_Project
             switch (key)
             {
                 case ConsoleKey.D1:
-                    SceneManager.LoadScene("IngameScene");
+                    SceneManager.Instance.LoadScene("IngameScene");
                     break;
                 case ConsoleKey.D4:
                     return;

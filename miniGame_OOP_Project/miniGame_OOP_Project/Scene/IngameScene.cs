@@ -1,4 +1,6 @@
-﻿namespace miniGame_OOP_Project
+﻿using System;
+
+namespace miniGame_OOP_Project
 {
     // 인게임 씬.
     // 맵 데이터 출력 (MapData에 저장되어 있는 맵타일, 포탈, 맵 안의 몬스터, npc 정보를  인스턴스로 불러와 출력)
@@ -11,6 +13,7 @@
         public IngameScene()
         {
             // 기본 생성자
+            Console.WriteLine("기본자 생성");
             nowMapInstance = new MapInstance("Village");
             GameManager.Instance.mapInstance = nowMapInstance;
         }
