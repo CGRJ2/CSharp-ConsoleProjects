@@ -13,8 +13,10 @@ namespace miniGame_OOP_Project
     {
         static GameManager instance;
         public static GameManager Instance { get { if (instance == null) instance = new GameManager(); return instance; } }
-        Player p1 = new Player(new Position(6,0), "기본이름", 100, 100);
         
+        // 초기 세팅
+        public Player player = new Player(new Position(6,2), "기본이름", 100, 100);
+        public MapInstance mapInstance;
         
         
 
@@ -27,10 +29,11 @@ namespace miniGame_OOP_Project
         public void Update()
         {
             //Rendering();
-            ConsoleKey key = Console.ReadKey(true).Key;
             
-            // 플레이어가 이동하면 기존 자리 지우고 이동 후 출력
-            p1.Move(key);
+            // 이게 순서 맞음 출력-입력-이동->다시출력
+            player.Print();
+            ConsoleKey key = Console.ReadKey(true).Key;
+            player.Move(key);
             
 
         }

@@ -19,14 +19,17 @@ namespace miniGame_OOP_Project
         public abstract void Print();
     }
 
-    static class SceneManager
+    // 이것도 싱글톤. 하나만 필요하니까.
+    class SceneManager
     {
+        private SceneManager instance;
+        public SceneManager Instance { get { if (instance == null) instance = new SceneManager(); return instance; } }
 
         static Dictionary<string, Scene> sceneDatas = new Dictionary<string, Scene>()
         {
             // 이렇게 추가. 씬별로 Scene클래스의 자식으로 상속해 사용.
             { "TitleScene", new TitleScene()},
-            { "IngameScene", new TitleScene()},
+            { "IngameScene", new IngameScene()},
         };
 
 
@@ -35,8 +38,6 @@ namespace miniGame_OOP_Project
         {
             Console.Clear();
             sceneDatas[sceneKey].Print();
-
-            // 플레이어 위치
         }
 
     }

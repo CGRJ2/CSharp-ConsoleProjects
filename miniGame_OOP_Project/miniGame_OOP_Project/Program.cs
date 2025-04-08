@@ -47,9 +47,10 @@ namespace miniGame_OOP_Project
 
         static void Main(string[] args)
         {
+            GameManager.Instance.Awake();
+
             while (true)
             {
-                GameManager.Instance.Awake();
                 GameManager.Instance.Update();
 
             }
