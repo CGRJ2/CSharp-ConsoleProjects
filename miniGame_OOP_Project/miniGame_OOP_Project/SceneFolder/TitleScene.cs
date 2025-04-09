@@ -41,6 +41,7 @@ namespace miniGame_OOP_Project
             switch (key)
             {
                 case ConsoleKey.D1:
+                    GameManager.Instance.mapInstance = new MapInstance("Village");
                     SceneManager.Instance.LoadScene("IngameScene");
                     break;
                 case ConsoleKey.D4:

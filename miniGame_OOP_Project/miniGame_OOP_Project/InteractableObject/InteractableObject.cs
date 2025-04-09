@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace miniGame_OOP_Project
 {
-    class Interfaces
+    public abstract class InteractableObject
     {
-    }
+        public string interactScript;
 
+        public abstract void Interact();
+    }
 }

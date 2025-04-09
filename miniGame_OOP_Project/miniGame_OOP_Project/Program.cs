@@ -60,13 +60,13 @@ namespace miniGame_OOP_Project
         {
             Console.CursorVisible = false;
 
+            GameManager.Instance.Awake();
+            GameManager.Instance.Start();
+            
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
             const int frameTimeMs = 16; // 약 60FPS
-
-            GameManager.Instance.Awake();
-
 
             while (true)
             {

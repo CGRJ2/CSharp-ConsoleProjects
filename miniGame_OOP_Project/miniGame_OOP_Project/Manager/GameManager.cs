@@ -15,27 +15,44 @@ namespace miniGame_OOP_Project
         static GameManager instance;
         public static GameManager Instance { get { if (instance == null) instance = new GameManager(); return instance; } }
 
+        public Position startPos;
+
+
         // 초기 플레이어 위치
-        public Player player = new Player(new Position(6, 2), "기본이름", 100, 100);
+        public Player player;
 
         public MapInstance mapInstance;
 
+        // 맵 변경 시 이벤트 발생
+        public event Action Interact_Event;
+
+        public void Interacted()
+        {
+            if (Interact_Event != null)
+            {
+                Interact_Event();
+            }
+        }
 
         public void Awake()
         {
             // 초기 설정
+            startPos = new Position(13, 3);                          // 시작 플레이어 위치
+            player = new Player(startPos, "steve", 100, 100);       // 이름설정 추가하자
+
             SceneManager.Instance.LoadScene("TitleScene");
+            // 씬변경 후 다시 인게임씬으로 돌아올 때. 게임매니저에 저장된 맵 인스턴스 다시 받아서 출력
+
         }
 
-        public void Update()
+        public void Start()
+        {
+
+        }
+
+        public void Update() // 프레임마다 반복
         {
             SceneManager.Instance.nowScene.Update();
-        }
-
-        // 계속 움직이는거 출력용. 기존 커서 지우고 새 커서 작성
-        public void Rendering()
-        {
-
         }
 
 

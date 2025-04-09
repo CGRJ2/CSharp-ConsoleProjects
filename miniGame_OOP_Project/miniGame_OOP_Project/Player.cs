@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace miniGame_OOP_Project
 {
@@ -14,22 +13,23 @@ namespace miniGame_OOP_Project
         public Position playerPos;
         private Position currentPos;
         private Position effectPos;
+        private Position dir;
         //private nowMapData;
 
-        private int dir_X;
-        private int dir_Y;
 
 
-        private string name_P;
-        private int hp;
-        private int mp;
 
+        public InteractableObject interactable { get; private set; }
+        public string name_P { get; set; }
+        public int hp { get; private set; }
+        public int mp { get; private set; }
 
 
         public Player(Position playerPos, string name_P, int hp, int mp)
         {
             this.playerPos = playerPos;
             this.currentPos = playerPos;
+            this.effectPos = playerPos;
             this.name_P = name_P;
             this.hp = hp;
             this.mp = mp;
@@ -38,35 +38,50 @@ namespace miniGame_OOP_Project
         // 벽에 닿으면 이동불가.
         public void Move(ConsoleKey key)
         {
-            effectPos = currentPos;
             currentPos = playerPos;
             switch (key)
             {
                 case ConsoleKey.A:
                 case ConsoleKey.LeftArrow:
-                    if (GameManager.Instance.mapInstance.checkWays[playerPos.y, playerPos.x-1] == tileType.wall) return;
+                    dir = new Position(-1, 0);
+                    if (GameManager.Instance.mapInstance.checkWays[playerPos.y, playerPos.x - 1].type == EnumTileTypes.empty) 
                         playerPos.x--;
                     break;
                 case ConsoleKey.D:
                 case ConsoleKey.RightArrow:
-                    if (GameManager.Instance.mapInstance.checkWays[playerPos.y, playerPos.x+1] == tileType.wall) return;
-                    playerPos.x++;
+                    dir = new Position(1, 0);
+                    if (GameManager.Instance.mapInstance.checkWays[playerPos.y, playerPos.x + 1].type == EnumTileTypes.empty) 
+                        playerPos.x++; 
                     break;
                 case ConsoleKey.W:
                 case ConsoleKey.UpArrow:
-                    if (GameManager.Instance.mapInstance.checkWays[playerPos.y-1, playerPos.x] == tileType.wall) return;
-                    playerPos.y--;
+                    dir = new Position(0, -1);
+                    if (GameManager.Instance.mapInstance.checkWays[playerPos.y - 1, playerPos.x].type == EnumTileTypes.empty)
+                        playerPos.y--;
                     break;
                 case ConsoleKey.S:
                 case ConsoleKey.DownArrow:
-                    if (GameManager.Instance.mapInstance.checkWays[playerPos.y+1, playerPos.x] == tileType.wall) return;
-                    playerPos.y++;
+                    dir = new Position(0, 1);
+                    if (GameManager.Instance.mapInstance.checkWays[playerPos.y + 1, playerPos.x].type == EnumTileTypes.empty)
+                        playerPos.y++;
                     break;
-                default: break;
+                default:
+                    break;
             }
 
-            // 이동 완료 좌표가 포탈이라면
-            if (GameManager.Instance.mapInstance.checkWays[playerPos.y, playerPos.x] == tileType.portal)
+
+            if (GameManager.Instance.mapInstance.checkWays[playerPos.y + dir.y, playerPos.x + dir.x].type == EnumTileTypes.empty) 
+            {
+                this.interactable = null;
+                return;
+            }
+            this.interactable = GameManager.Instance.mapInstance.checkWays[playerPos.y + dir.y, playerPos.x + dir.x].interactable;
+            // 인터렉터블 만남 이벤트
+
+
+
+            /*// 이동 완료 좌표가 포탈이라면 -- 이거 삭제해. 포탈과 상호작용으로 넘어가는거로 바꿔
+            if (GameManager.Instance.mapInstance.checkWays[playerPos.y, playerPos.x] == TileType.portal)
             {
                 // 포탈 인터랙트 이벤트
                 // 이벤트로 플레이어 좌표 넣기.
@@ -80,51 +95,58 @@ namespace miniGame_OOP_Project
                         GameManager.Instance.mapInstance.portals[i].Interact();
                     }
                 }
-            }
-            
+            }*/
+
         }
-        
-        public void Print()
+
+
+        public void PrintMoveEffect()
         {
-            dir_X = playerPos.x - currentPos.x;
-            dir_Y = playerPos.y - currentPos.y;
             Console.SetCursorPosition(effectPos.x, effectPos.y);
             Console.Write(" ");
+
+            // 이동하지 않았다면 => 이동 효과 안줌. + 지우기 필요할듯?
+            if (currentPos.x == playerPos.x && currentPos.y == playerPos.y) return;
+            
+            if (dir.x == 1)
+            {
+                Console.SetCursorPosition(currentPos.x, currentPos.y);
+                Console.Write("=");
+            }
+            else if (dir.x == -1)
+            {
+                Console.SetCursorPosition(currentPos.x, currentPos.y);
+                Console.Write("=");
+            }
+            else if (dir.y == 1)
+            {
+                Console.SetCursorPosition(currentPos.x, currentPos.y);
+                Console.Write("|");
+            }
+            else if (dir.y == -1)
+            {
+                Console.SetCursorPosition(currentPos.x, currentPos.y);
+                Console.Write("|");
+            }
+
+            effectPos = currentPos;
+        }
+
+        public void Print()
+        {
             Console.SetCursorPosition(currentPos.x, currentPos.y);
             Console.Write(" ");
 
-            if (dir_X >= 1)
-            {
-                Console.SetCursorPosition(playerPos.x - 1, playerPos.y);
-                Console.Write("=");
-            }
-            else if (dir_X <= -1)
-            {
-                Console.SetCursorPosition(playerPos.x + 1, playerPos.y);
-                Console.Write("=");
-            }
-            else if (dir_Y >= 1)
-            {
-                Console.SetCursorPosition(playerPos.x, playerPos.y - 1);
-                Console.Write("|");
-            }
-            else if (dir_Y <= -1)
-            {
-                Console.SetCursorPosition(playerPos.x, playerPos.y + 1);
-                Console.Write("|");
-            }
-            else
-            {
-                Console.SetCursorPosition(effectPos.x, effectPos.y);
-                Console.Write(" ");
-            }
+            PrintMoveEffect();
 
-                Console.SetCursorPosition(playerPos.x, playerPos.y);
+            Console.SetCursorPosition(playerPos.x, playerPos.y);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("P");
-                
+
             Console.ResetColor();
         }
+
+        
     }
 
 }
