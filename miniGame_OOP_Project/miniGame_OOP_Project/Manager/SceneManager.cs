@@ -16,12 +16,18 @@ namespace miniGame_OOP_Project
 
         public Scene() { }
 
+        public abstract void Awake();
+
         public abstract void Print();
+        public abstract void Input();
+        public abstract void Update();
     }
 
     // 이것도 싱글톤. 하나만 필요하니까.
     class SceneManager
     {
+        public Scene nowScene;
+
         private static SceneManager instance;
         public static SceneManager Instance { get { if (instance == null) instance = new SceneManager(); return instance; } }
 
@@ -33,11 +39,13 @@ namespace miniGame_OOP_Project
         };
 
 
-
+        // 씬 전환 시 호출
         public void LoadScene(string sceneKey)
         {
+            nowScene = sceneDatas[sceneKey];
             Console.Clear();
-            sceneDatas[sceneKey].Print();
+
+            nowScene.Awake();
         }
 
     }

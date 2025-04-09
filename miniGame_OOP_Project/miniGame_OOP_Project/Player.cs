@@ -13,6 +13,7 @@ namespace miniGame_OOP_Project
     {
         public Position playerPos;
         private Position currentPos;
+        private Position effectPos;
         //private nowMapData;
 
         private int dir_X;
@@ -23,6 +24,8 @@ namespace miniGame_OOP_Project
         private int hp;
         private int mp;
 
+
+
         public Player(Position playerPos, string name_P, int hp, int mp)
         {
             this.playerPos = playerPos;
@@ -32,12 +35,10 @@ namespace miniGame_OOP_Project
             this.mp = mp;
         }
 
-        // 이동과 출력을 동시에
         // 벽에 닿으면 이동불가.
         public void Move(ConsoleKey key)
         {
-            Console.SetCursorPosition(currentPos.x, currentPos.y);
-            Console.Write(" ");
+            effectPos = currentPos;
             currentPos = playerPos;
             switch (key)
             {
@@ -61,6 +62,7 @@ namespace miniGame_OOP_Project
                     if (GameManager.Instance.mapInstance.checkWays[playerPos.y+1, playerPos.x] == tileType.wall) return;
                     playerPos.y++;
                     break;
+                default: break;
             }
 
             // 이동 완료 좌표가 포탈이라면
@@ -74,6 +76,7 @@ namespace miniGame_OOP_Project
                     if (GameManager.Instance.mapInstance.portals[i].PortalPos.x == playerPos.x &&
                         GameManager.Instance.mapInstance.portals[i].PortalPos.y == playerPos.y)
                     {
+                        // 여기를 바꿀까?
                         GameManager.Instance.mapInstance.portals[i].Interact();
                     }
                 }
@@ -85,10 +88,10 @@ namespace miniGame_OOP_Project
         {
             dir_X = playerPos.x - currentPos.x;
             dir_Y = playerPos.y - currentPos.y;
+            Console.SetCursorPosition(effectPos.x, effectPos.y);
+            Console.Write(" ");
             Console.SetCursorPosition(currentPos.x, currentPos.y);
             Console.Write(" ");
-
-
 
             if (dir_X >= 1)
             {
@@ -110,8 +113,13 @@ namespace miniGame_OOP_Project
                 Console.SetCursorPosition(playerPos.x, playerPos.y + 1);
                 Console.Write("|");
             }
+            else
+            {
+                Console.SetCursorPosition(effectPos.x, effectPos.y);
+                Console.Write(" ");
+            }
 
-            Console.SetCursorPosition(playerPos.x, playerPos.y);
+                Console.SetCursorPosition(playerPos.x, playerPos.y);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("P");
                 

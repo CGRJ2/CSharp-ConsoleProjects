@@ -13,7 +13,11 @@ namespace miniGame_OOP_Project
         {
             
         }
-
+        public override void Awake()
+        {
+            Print();
+            Input();
+        }
 
         public override void Print()
         {
@@ -28,10 +32,9 @@ namespace miniGame_OOP_Project
             Console.WriteLine("3. 옵션");
             Console.WriteLine("4. 게임 종료");
 
-            Input();
         }
 
-        public void Input()
+        public override void Input()
         {
             ConsoleKey key = Console.ReadKey(true).Key;
 
@@ -41,12 +44,19 @@ namespace miniGame_OOP_Project
                     SceneManager.Instance.LoadScene("IngameScene");
                     break;
                 case ConsoleKey.D4:
-                    return;
+                    break;
                 default:
                     Console.WriteLine("제대로된 값을 입력하세요...");
                     Input();
                     break;
             }
         }
+
+        public override void Update()
+        {
+            
+        }
+
+        
     }
 }

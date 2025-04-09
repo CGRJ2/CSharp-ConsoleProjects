@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace miniGame_OOP_Project
@@ -53,16 +55,27 @@ namespace miniGame_OOP_Project
         // 7. 세이브 로드 구현
         // 플레이어 현재 상태 ( 데이터 + 위치(맵+좌표) ) 저장 및 불러오기
         // 맵에 있는 몬스터 데이터? --> 이거 그냥 맵 처음 시작할 때, 기본 몬스터 배치로 떼우면 될듯? 메이플처럼
-
-
-
+        
         static void Main(string[] args)
         {
+            Console.CursorVisible = false;
+
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+            const int frameTimeMs = 16; // 약 60FPS
+
             GameManager.Instance.Awake();
+
 
             while (true)
             {
-                GameManager.Instance.Update();
+                long start = sw.ElapsedMilliseconds;
+
+                GameManager.Instance.Update(); // 한 프레임 처리
+
+                long elapsed = sw.ElapsedMilliseconds - start;
+                if (elapsed < frameTimeMs) Thread.Sleep((int)(frameTimeMs - elapsed)); // 남은 시간만큼 딜레이
             }
         }
     }

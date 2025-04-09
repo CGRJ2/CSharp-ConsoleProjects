@@ -30,6 +30,7 @@ namespace miniGame_OOP_Project
         // 포탈 상호작용 => 맵 이동
         public void Interact()
         {
+            // 인게임 씬 상에서 구현해야할거같은데..
             GameManager.Instance.mapInstance = new MapInstance(outMap);
             GameManager.Instance.player.playerPos = outPos;
         }

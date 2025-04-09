@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -13,30 +14,22 @@ namespace miniGame_OOP_Project
     {
         static GameManager instance;
         public static GameManager Instance { get { if (instance == null) instance = new GameManager(); return instance; } }
-        
+
         // 초기 플레이어 위치
-        public Player player = new Player(new Position(6,2), "기본이름", 100, 100);
+        public Player player = new Player(new Position(6, 2), "기본이름", 100, 100);
+
         public MapInstance mapInstance;
-        
-        
 
 
         public void Awake()
         {
             // 초기 설정
-            Console.CursorVisible = false;
             SceneManager.Instance.LoadScene("TitleScene");
-            mapInstance = new MapInstance("Village");
         }
 
         public void Update()
         {
-            //Rendering();
-            
-            // 이게 순서 맞음 출력-입력-이동->다시출력
-            player.Print();
-            ConsoleKey key = Console.ReadKey(true).Key;
-            player.Move(key);
+            SceneManager.Instance.nowScene.Update();
         }
 
         // 계속 움직이는거 출력용. 기존 커서 지우고 새 커서 작성
