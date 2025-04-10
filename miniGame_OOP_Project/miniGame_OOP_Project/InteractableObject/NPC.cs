@@ -18,6 +18,7 @@ namespace miniGame_OOP_Project
         public NPC(string name, Position originPos)
         {
             interactScript = $"대화(G): {name}";
+            type = ObjectType.NPC;
             this.name = name;
             this.npcPos = originPos;
             this.scripts = NPCScripts.Instance.npcScripts[name];
@@ -108,6 +109,5 @@ namespace miniGame_OOP_Project
             npcScripts.Add("주부", new string[] {"안녕!", "마침 재료가 부족한데...", "혹시 도와줄 수 있겠니?"});
             npcScripts.Add("기사", new string[] {"...", "이 앞은 위험하다..."});
         }
-
     }
 }

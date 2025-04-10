@@ -17,6 +17,7 @@ namespace miniGame_OOP_Project
         public Monster(string name, int hp, int attack)
         {
             interactScript = $"공격(G): {name}";
+            type = ObjectType.Monster;
             this.name = name;
             this.hp = hp;
             this.attack = attack;
@@ -34,24 +35,53 @@ namespace miniGame_OOP_Project
             // 몬스터 공격력 - 플레이어 방어력 만큼 플레이어 체력 닳기
             player.hp -= (attack - player.defence);
             this.hp -= player.attack;
-
+            BattlePrint(player);
             if (this.hp <= 0)
             {
-                mapInstance.checkWays[monsterPos.y, monsterPos.x].type = EnumTileTypes.empty;
+                mapInstance.checkWays[monsterPos.y, monsterPos.x].type = EnumTileTypes.empty; // 아이템으로 변경
                 mapInstance.checkWays[monsterPos.y, monsterPos.x].interactable = null;
-
+                ClearBattlePrint();
                 Erase();
+
             }
 
             player.Interacted();
         }
+        public void BattlePrint(Player player)
+        {
+            int uiStartX = 52;
+            int uiStartY = 10;
+            Console.SetCursorPosition(uiStartX, uiStartY++);
+            Console.Write($"Target:{name}");
+            Console.SetCursorPosition(uiStartX, uiStartY++);
+            Console.Write($"HP: {hp}");
+            Console.SetCursorPosition(uiStartX, uiStartY++);
+            Console.Write($"{player.name_P}의 공격! {player.attack} 데미지!");
+            Console.SetCursorPosition(uiStartX, uiStartY++);
+            Console.Write($"{name}의 공격! {attack} 데미지");
+            Console.SetCursorPosition(uiStartX, uiStartY++);
+        }
+        public void ClearBattlePrint()
+        {
+            int uiStartX = 52;
+            int uiStartY = 10;
+            Console.SetCursorPosition(uiStartX, uiStartY++);
+            Console.Write("                              ");
+            Console.SetCursorPosition(uiStartX, uiStartY++);
+            Console.Write("                              ");
+            Console.SetCursorPosition(uiStartX, uiStartY++);
+            Console.Write("                              ");
+            Console.SetCursorPosition(uiStartX, uiStartY++);
+            Console.Write("                              ");
+            Console.SetCursorPosition(uiStartX, uiStartY++);
 
+            Console.SetCursorPosition(uiStartX, uiStartY++);
+        }
         public void Erase()
         {
             Console.SetCursorPosition(monsterPos.x, monsterPos.y);
             Console.Write(" ");
         }
-
         public void PrintMonster()
         {
             Console.SetCursorPosition(monsterPos.x, monsterPos.y);
@@ -60,7 +90,10 @@ namespace miniGame_OOP_Project
             Console.ResetColor();
         }
 
+        /*public void DropBox(Item item, int money)
+        {
 
+        }*/
     }
 
 

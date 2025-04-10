@@ -132,7 +132,10 @@ namespace miniGame_OOP_Project
 
             if (player.interactable != null)
             {
-                Console.ForegroundColor = ConsoleColor.Green;
+                if (player.interactable.type == ObjectType.Monster)
+                    Console.ForegroundColor = ConsoleColor.Red;
+                else
+                    Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write($"{player.interactable.interactScript,-1}");
                 Console.ResetColor();
             }
@@ -147,6 +150,7 @@ namespace miniGame_OOP_Project
             int uiStartX = 52;
             int uiStartY = 1;
             Player player = GameManager.Instance.player;
+
 
             // 맵이 가로 30칸이 넘지 않게.
             Console.SetCursorPosition(uiStartX, uiStartY++);
