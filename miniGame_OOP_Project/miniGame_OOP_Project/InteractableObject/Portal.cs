@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace miniGame_OOP_Project
 {
-    class Portal : InteractableObject
+    public class Portal : InteractableObject
     {
         public Position PortalPos;
         Position outPos;
@@ -29,14 +29,11 @@ namespace miniGame_OOP_Project
         }
 
         // 포탈 상호작용 => 맵 이동
-        public override void Interact()
+        public override void Interact(ref MapInstance mapInstance, ref Player player)
         {
-            // 인게임 씬 상에서 구현해야할거같은데..
-            // 게임 매니저 의존도가 여기 생기면 안될거같음.
-            // 일단 시간 없으니 이어서 진행하자.
-            GameManager.Instance.mapInstance = new MapInstance(outMap);
-            GameManager.Instance.player.playerPos = outPos;
-
+            mapInstance = new MapInstance(outMap);
+            player.playerPos = outPos;
+            player.Interacted();
         }
     }
 }

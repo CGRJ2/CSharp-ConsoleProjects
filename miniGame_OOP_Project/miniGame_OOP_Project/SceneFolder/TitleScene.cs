@@ -22,10 +22,11 @@ namespace miniGame_OOP_Project
         public override void Print()
         {
             Console.Clear();
-            Console.WriteLine("****************************************************************");
-            Console.WriteLine("********************** Console RPG Game ************************");
-            Console.WriteLine("**********************    제목 미정      ************************");
-            Console.WriteLine("****************************************************************");
+            Console.WriteLine("**************************************************************************");
+            Console.WriteLine("************************** Console Project *******************************");
+            Console.WriteLine("**************************    Static Rpg   *******************************");
+            Console.WriteLine("*** 타임라인 구현할 시간이 없어서 주인공 빼고 모두 움직일 수 없는 세계 ***");
+            Console.WriteLine("**************************************************************************");
             Console.WriteLine();
             Console.WriteLine("1. 새로운 시작");
             Console.WriteLine("2. 불러오기(미구현)");

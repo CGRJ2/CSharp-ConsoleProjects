@@ -2,10 +2,6 @@
 
 namespace miniGame_OOP_Project
 {
-    // 인게임 씬.
-    // 플레이 방법, 단축키
-    // 현재 맵, 플레이어 정보 출력
-
     class IngameScene : Scene
     {
         // 그냥 할거.
@@ -17,16 +13,18 @@ namespace miniGame_OOP_Project
         // 아이템 드랍
         // 인벤토리
 
-        // 여기에 플레이어, 맵인스턴스 넣자
+        //
+        GameManager gm = GameManager.Instance;
+
         bool inventoryToggle = false;
 
         public override void Awake()
         {
-            GameManager.Instance.Interact_Event += PrintUI;
+            gm.player.Interact_Event += PrintUI;
 
             Print();
             // 인게임씬 다시 돌아올 때, 기존 인스턴스맵 다시 출력
-            GameManager.Instance.mapInstance.Print();
+            gm.mapInstance.Print();
             PrintUI();
         }
 
@@ -35,7 +33,7 @@ namespace miniGame_OOP_Project
             if (Console.KeyAvailable)
             {
                 ConsoleKey key = Console.ReadKey(true).Key;
-                GameManager.Instance.player.Move(key); // 방향키라면 이동하고
+                gm.player.Move(key); // 방향키라면 이동하고
 
                 // 인벤토리 키 : I
                 if (key == ConsoleKey.I && !inventoryToggle)
@@ -50,12 +48,12 @@ namespace miniGame_OOP_Project
                 }
 
                 // 상호작용 키 : G
-                else if (GameManager.Instance.player.interactable != null &&
+                else if (gm.player.interactable != null &&
                          key == ConsoleKey.G)
                 {
-                    GameManager.Instance.player.interactable.Interact();
+                    gm.player.interactable.Interact(ref gm.mapInstance ,ref gm.player);
                     // 플레이어 출력 1회 갱신.
-                    GameManager.Instance.player.Move(key);
+                    gm.player.Move(key);
                 }
 
 
@@ -65,7 +63,7 @@ namespace miniGame_OOP_Project
         public override void Print()
         {
             // 플레이어 이동 출력
-            GameManager.Instance.player.Print();
+            gm.player.Print();
             // npc 움직임 출력
             // 몬스터 움직임 출력
         }
@@ -101,11 +99,15 @@ namespace miniGame_OOP_Project
             Console.SetCursorPosition(uiStartX, uiStartY++);
             Console.Write("│ -------------│");
             Console.SetCursorPosition(uiStartX, uiStartY++);
-            Console.Write($"│ Name: {player.name_P,-7}│");
+            Console.Write($"│ Name: {player.name_P,7}│");
             Console.SetCursorPosition(uiStartX, uiStartY++);
-            Console.Write($"│ HP:   {player.hp,-7}│");
+            Console.Write($"│ HP:   {player.hp,7}│");
             Console.SetCursorPosition(uiStartX, uiStartY++);
-            Console.Write($"│ MP:   {player.mp,-7}│");
+            Console.Write($"│ MP:   {player.mp,7}│");
+            Console.SetCursorPosition(uiStartX, uiStartY++);
+            Console.Write($"│ 공격력:{player.attack,6}│");
+            Console.SetCursorPosition(uiStartX, uiStartY++);
+            Console.Write($"│ 방어력:{player.defence,6}│");
             Console.SetCursorPosition(uiStartX, uiStartY++);
             Console.Write("└──────────────┘");
             Console.SetCursorPosition(uiStartX, uiStartY++);
@@ -122,9 +124,9 @@ namespace miniGame_OOP_Project
 
         public void PrintInteractState()
         {
-            Player player = GameManager.Instance.player;
+            Player player = gm.player;
             int uiStartX = 32;
-            int uiStartY = 11;
+            int uiStartY = 13;
 
             Console.SetCursorPosition(uiStartX + 2, uiStartY++);
 

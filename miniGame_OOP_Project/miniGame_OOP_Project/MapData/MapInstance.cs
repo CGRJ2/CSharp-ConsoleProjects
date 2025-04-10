@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace miniGame_OOP_Project
 {
-    enum EnumTileTypes { portal, npc, monster, wall, empty }
-    class TileType
+    public enum EnumTileTypes { portal, npc, monster, wall, empty }
+    public class TileType
     {
         public EnumTileTypes type;
         public InteractableObject interactable { get; private set; }
@@ -20,7 +20,7 @@ namespace miniGame_OOP_Project
     }
 
     // 현재 맵 인스턴스 생성
-    class MapInstance
+    public class MapInstance
     {
         public MapData nowMap;
         public List<Portal> portals = new List<Portal>();
@@ -54,7 +54,6 @@ namespace miniGame_OOP_Project
             // 맵 인스턴스 만들 때 마다 콘솔 초기화 후 맵타일 출력. 맵요소 정보 새로 저장
             checkWays = CheckWays_Fixed();
             Print();
-            GameManager.Instance.Interacted();
         }
 
         // 맵 인스턴스 생성 시 단 한번만 호출

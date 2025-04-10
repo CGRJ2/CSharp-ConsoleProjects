@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace miniGame_OOP_Project
 {
-    class NPC : InteractableObject
+    public class NPC : InteractableObject
     {
         public string name { get; private set; }
         public Position npcPos;
         string[] scripts;
         int scriptIndex = 0;
         int uiPosX = 32;
-        int uiPosY = 14;
+        int uiPosY = 16;
 
         public NPC(string name, Position originPos)
         {
@@ -23,9 +23,10 @@ namespace miniGame_OOP_Project
             this.scripts = NPCScripts.Instance.npcScripts[name];
         }
 
-        public override void Interact()
+        public override void Interact(ref MapInstance mapInstance, ref Player player)
         {
             ScriptPrint();
+            player.Interacted();
         }
 
         public void ScriptPrint()
@@ -94,7 +95,7 @@ namespace miniGame_OOP_Project
 
     public class NPCScripts
     {
-        // 싱글톤 저장소 (전역으로 하는게 나을라나?)
+        // 싱글톤 저장소 (전역으로 하는게 나을라나? npc는 거의 모든 지역에 있으니까)
         private static NPCScripts instance;
         public static NPCScripts Instance { get { if (instance == null) instance = new NPCScripts(); return instance; } }
 

@@ -8,8 +8,9 @@ namespace miniGame_OOP_Project
 {
     public abstract class InteractableObject
     {
+
         public string interactScript;
 
-        public abstract void Interact();
+        public abstract void Interact(ref MapInstance mapInstance, ref Player player);
     }
 }

@@ -34,7 +34,7 @@ namespace miniGame_OOP_Project
 
     public class MapDic
     {
-        // 싱글톤 저장소 (전역으로 하는게 나을라나?)
+        // 싱글톤 저장소
         private static MapDic instance;
         public static MapDic Instance { get { if (instance == null) instance = new MapDic(); return instance; } }
 
