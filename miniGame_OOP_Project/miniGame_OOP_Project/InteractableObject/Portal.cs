@@ -32,6 +32,8 @@ namespace miniGame_OOP_Project
         public override void Interact()
         {
             // 인게임 씬 상에서 구현해야할거같은데..
+            // 게임 매니저 의존도가 여기 생기면 안될거같음.
+            // 일단 시간 없으니 이어서 진행하자.
             GameManager.Instance.mapInstance = new MapInstance(outMap);
             GameManager.Instance.player.playerPos = outPos;
 

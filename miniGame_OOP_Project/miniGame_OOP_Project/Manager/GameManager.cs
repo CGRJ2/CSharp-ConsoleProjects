@@ -15,6 +15,8 @@ namespace miniGame_OOP_Project
         static GameManager instance;
         public static GameManager Instance { get { if (instance == null) instance = new GameManager(); return instance; } }
 
+        public bool isOnGame;
+
         public Position startPos;
 
 
@@ -37,7 +39,8 @@ namespace miniGame_OOP_Project
         public void Awake()
         {
             // 초기 설정
-            startPos = new Position(13, 3);                          // 시작 플레이어 위치
+            isOnGame = true;
+            startPos = new Position(13, 3);                         // 시작 플레이어 위치
             player = new Player(startPos, "steve", 100, 100);       // 이름설정 추가하자
 
             SceneManager.Instance.LoadScene("TitleScene");

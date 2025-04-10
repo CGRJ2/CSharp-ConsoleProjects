@@ -48,6 +48,7 @@
     <Compile Include="Interfaces.cs" />
     <Compile Include="Manager\GameManager.cs" />
     <Compile Include="InteractableObject\NPC.cs" />
+    <Compile Include="Monster.cs" />
     <Compile Include="SceneFolder\IngameScene.cs" />
     <Compile Include="MapData\MapInstance.cs" />
     <Compile Include="MapData\MapData.cs" />

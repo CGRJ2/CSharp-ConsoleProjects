@@ -136,7 +136,7 @@ namespace miniGame_OOP_Project
             }
             else
             {
-                Console.Write("             ");
+                Console.Write("                 ");
             }
         }
 

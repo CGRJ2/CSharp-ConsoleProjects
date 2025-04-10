@@ -39,13 +39,15 @@ namespace miniGame_OOP_Project
                     nowMap = MapDic.Instance.GetMap("Village");
                     portals.Add(new Portal(new Position(13, 2), new Position(1 +1, 2), "Field")); // 나올때 오른쪽으로 나옴 +1
                     // 포탈 필요하면 더 추가
-                    //npcs.Add(new NPC());
+                    npcs.Add(new NPC("촌장님", new Position(14,6)));
+                    npcs.Add(new NPC("주부", new Position(19,10)));
 
                     // monster 추가
                     break;
                 case "Field":
                     nowMap = MapDic.Instance.GetMap("Field");
                     portals.Add(new Portal(new Position(1, 2), new Position(13 -1, 2), "Village")); // 나올때 왼쪽으로 나옴 -1
+                    npcs.Add(new NPC("기사", new Position(10, 6)));
                     break;
             }
 
@@ -77,11 +79,11 @@ namespace miniGame_OOP_Project
                 ways[portals[i].PortalPos.y, portals[i].PortalPos.x] = new TileType(EnumTileTypes.portal, portals[i]); // 포탈은 이동 가능
             }
 
-            // npc 위치는 npc 이동할때마다 갱신해야하는데?
-            //for (int i = 0; i < npcs.Count; i++)
-            //{
-            //    ways[npcs[i].npcPos.y, npcs[i].npcPos.x] = new TileType(EnumTileTypes.portal, portals[i]); // 포탈은 이동 가능
-            //}
+            // npc
+            for (int i = 0; i < npcs.Count; i++)
+            {
+                ways[npcs[i].npcPos.y, npcs[i].npcPos.x] = new TileType(EnumTileTypes.npc, npcs[i]); 
+            }
 
 
             // monster 위치는 tileType.monster
@@ -101,6 +103,11 @@ namespace miniGame_OOP_Project
             for (int i = 0; i < portals.Count; i++)
             {
                 portals[i].PrintPortal();
+            }
+
+            for (int i = 0; i < npcs.Count; i++)
+            {
+                npcs[i].PrintNPC();
             }
         }
     }

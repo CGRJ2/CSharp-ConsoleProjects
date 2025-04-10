@@ -17,8 +17,6 @@ namespace miniGame_OOP_Project
         //private nowMapData;
 
 
-
-
         public InteractableObject interactable { get; private set; }
         public string name_P { get; set; }
         public int hp { get; private set; }
@@ -69,34 +67,13 @@ namespace miniGame_OOP_Project
                     break;
             }
 
-
             if (GameManager.Instance.mapInstance.checkWays[playerPos.y + dir.y, playerPos.x + dir.x].type == EnumTileTypes.empty) 
             {
                 this.interactable = null;
                 return;
             }
             this.interactable = GameManager.Instance.mapInstance.checkWays[playerPos.y + dir.y, playerPos.x + dir.x].interactable;
-            // 인터렉터블 만남 이벤트
-
-
-
-            /*// 이동 완료 좌표가 포탈이라면 -- 이거 삭제해. 포탈과 상호작용으로 넘어가는거로 바꿔
-            if (GameManager.Instance.mapInstance.checkWays[playerPos.y, playerPos.x] == TileType.portal)
-            {
-                // 포탈 인터랙트 이벤트
-                // 이벤트로 플레이어 좌표 넣기.
-                int count = GameManager.Instance.mapInstance.portals.Count;
-                for (int i = 0; i < count; i++)
-                {
-                    if (GameManager.Instance.mapInstance.portals[i].PortalPos.x == playerPos.x &&
-                        GameManager.Instance.mapInstance.portals[i].PortalPos.y == playerPos.y)
-                    {
-                        // 여기를 바꿀까?
-                        GameManager.Instance.mapInstance.portals[i].Interact();
-                    }
-                }
-            }*/
-
+            // 인터렉터블 만남 
         }
 
 

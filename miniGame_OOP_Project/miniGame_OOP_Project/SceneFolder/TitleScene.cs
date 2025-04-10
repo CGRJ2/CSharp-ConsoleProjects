@@ -28,8 +28,8 @@ namespace miniGame_OOP_Project
             Console.WriteLine("****************************************************************");
             Console.WriteLine();
             Console.WriteLine("1. 새로운 시작");
-            Console.WriteLine("2. 불러오기");
-            Console.WriteLine("3. 옵션");
+            Console.WriteLine("2. 불러오기(미구현)");
+            Console.WriteLine("3. 옵션(미구현)");
             Console.WriteLine("4. 게임 종료");
 
         }
@@ -45,6 +45,7 @@ namespace miniGame_OOP_Project
                     SceneManager.Instance.LoadScene("IngameScene");
                     break;
                 case ConsoleKey.D4:
+                    GameManager.Instance.isOnGame = false;
                     break;
                 default:
                     Console.WriteLine("제대로된 값을 입력하세요...");

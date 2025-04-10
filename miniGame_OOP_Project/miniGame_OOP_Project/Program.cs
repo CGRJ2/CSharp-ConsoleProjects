@@ -21,13 +21,9 @@ namespace miniGame_OOP_Project
         // 플레이어 상호작용.
         // 플레이어 이동
 
-
-
         // 2. 맵 구현
         // 맵 이동 구현
-        // 맵 저장소 구현    ///<-----------여기까지 완료
-
-
+        // 맵 저장소 구현    
 
         // 3. 몬스터 구현
         // 몬스터 데이터 (딕셔너리? 탐색이 빠르니까?)
@@ -42,19 +38,10 @@ namespace miniGame_OOP_Project
         // 아이템 구현
         // 인벤토리, 아이템 착용 칸
 
-
         // 5. npc 구현
-
-
-
-
 
         // 6. 퀘스트 & npc 대화구현 (자료구조)
 
-
-        // 7. 세이브 로드 구현
-        // 플레이어 현재 상태 ( 데이터 + 위치(맵+좌표) ) 저장 및 불러오기
-        // 맵에 있는 몬스터 데이터? --> 이거 그냥 맵 처음 시작할 때, 기본 몬스터 배치로 떼우면 될듯? 메이플처럼
         
         static void Main(string[] args)
         {
@@ -68,7 +55,7 @@ namespace miniGame_OOP_Project
 
             const int frameTimeMs = 16; // 약 60FPS
 
-            while (true)
+            while (GameManager.Instance.isOnGame)
             {
                 long start = sw.ElapsedMilliseconds;
 
@@ -77,6 +64,11 @@ namespace miniGame_OOP_Project
                 long elapsed = sw.ElapsedMilliseconds - start;
                 if (elapsed < frameTimeMs) Thread.Sleep((int)(frameTimeMs - elapsed)); // 남은 시간만큼 딜레이
             }
+
+            Console.WriteLine();
+            Console.WriteLine("게임 종료");
+            Console.WriteLine();
+
         }
     }
 }
