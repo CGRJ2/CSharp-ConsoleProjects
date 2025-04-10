@@ -38,18 +38,26 @@ namespace miniGame_OOP_Project
             {
                 case "Village" :
                     nowMap = MapDic.Instance.GetMap("Village");
-                    portals.Add(new Portal(new Position(13, 2), new Position(1 +1, 2), "Field")); // 나올때 오른쪽으로 나옴 +1
+                    portals.Add(new Portal(new Position(19, 10), new Position(1 +1, 2), "Field")); // 나올때 오른쪽으로 나옴 +1
                     // 포탈 필요하면 더 추가
                     npcs.Add(new NPC("촌장님", new Position(14,6)));
-                    npcs.Add(new NPC("주부", new Position(19,10)));
+                    npcs.Add(new NPC("주부", new Position(8, 10)));
 
                     // monster 추가
                     break;
                 case "Field":
                     nowMap = MapDic.Instance.GetMap("Field");
-                    portals.Add(new Portal(new Position(1, 2), new Position(13 -1, 2), "Village")); // 나올때 왼쪽으로 나옴 -1
+                    portals.Add(new Portal(new Position(1, 2), new Position(19 -1, 10), "Village")); // 나올때 왼쪽으로 나옴 -1
+                    portals.Add(new Portal(new Position(13, 5), new Position(1+1, 4), "Cave")); // 나올때 오른쪽으로 나옴 +1
                     npcs.Add(new NPC("기사", new Position(10, 6)));
                     monsters.Add(MonsterDic.Instance.SpawnMonster("슬라임", new Position(3,10)));
+                    break;
+
+                case "Cave":
+                    nowMap = MapDic.Instance.GetMap("Cave");
+                    portals.Add(new Portal(new Position(1, 4), new Position(13-1, 5), "Field")); // 나올때 왼쪽으로 나옴 -1
+                    monsters.Add(MonsterDic.Instance.SpawnMonster("고블린", new Position(6, 7)));
+                    monsters.Add(MonsterDic.Instance.SpawnMonster("고블린", new Position(12, 4)));
                     break;
             }
 

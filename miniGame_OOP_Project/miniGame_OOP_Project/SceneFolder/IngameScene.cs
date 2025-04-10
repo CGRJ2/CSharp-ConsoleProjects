@@ -40,11 +40,13 @@ namespace miniGame_OOP_Project
                 {
                     // 인벤토리 열기
                     inventoryToggle = true;
+                    PrintInventory();
                 }
                 else if (key == ConsoleKey.I && inventoryToggle && key == ConsoleKey.Escape)
                 {
                     // 인벤토리 닫기
                     inventoryToggle = false;
+                    ClearInventory();
                 }
 
                 // 상호작용 키 : G
@@ -165,6 +167,45 @@ namespace miniGame_OOP_Project
             Console.Write("│        ◀▼▶│");
             Console.SetCursorPosition(uiStartX, uiStartY++);
             Console.Write("└──────────────┘");
+        }
+
+
+        public void PrintInventory()
+        {
+            Player player = GameManager.Instance.player;
+            if (player.inventory == null) return;
+
+            int uiPosX = 32;
+            int uiPosY = 20;
+            Console.SetCursorPosition(uiPosX, uiPosY++);
+            Console.Write("┌──────────────┐");
+            for (int i = 0; i < player.inventory.Count; i++)
+            {
+                Console.SetCursorPosition(uiPosX, uiPosY++);
+                Console.Write($"┌{player.inventory[i].Data.Name}: {player.inventory[i].Data.Description}┐");
+            }
+            Console.SetCursorPosition(uiPosX, uiPosY++);
+            Console.Write("└──────────────┘");
+        }
+
+        public void ClearInventory()
+        {
+            int uiPosX = 32;
+            int uiPosY = 20;
+            Console.SetCursorPosition(uiPosX, uiPosY++);
+            Console.Write("                       ");
+            Console.SetCursorPosition(uiPosX, uiPosY++);
+            Console.Write("                       ");
+            Console.SetCursorPosition(uiPosX, uiPosY++);
+            Console.Write("                       ");
+            Console.SetCursorPosition(uiPosX, uiPosY++);
+            Console.Write("                       ");
+            Console.SetCursorPosition(uiPosX, uiPosY++);
+            Console.Write("                       ");
+            Console.SetCursorPosition(uiPosX, uiPosY++);
+            Console.Write("                       ");
+            Console.SetCursorPosition(uiPosX, uiPosY++);
+            Console.Write("                       ");
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace miniGame_OOP_Project
 {
@@ -23,8 +24,11 @@ namespace miniGame_OOP_Project
         
         public int hp = 100;
         public int mp = 100;
-        public int attack = 1;
+        public int attack = 5;
         public int defence = 1;
+
+        public int money = 0;
+        public List<Item> inventory = new List<Item>();
 
 
         public Player(Position playerPos, string name_P)

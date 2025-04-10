@@ -30,7 +30,7 @@ namespace miniGame_OOP_Project
         {
             // 초기 설정
             isOnGame = true;
-            startPos = new Position(13, 3);                         // 시작 플레이어 위치
+            startPos = new Position(14, 10);              // 시작 플레이어 위치
             player = new Player(startPos, "steve");       // 이름설정 추가하자
 
             SceneManager.Instance.LoadScene("TitleScene");

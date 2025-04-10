@@ -43,9 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Box.cs" />
     <Compile Include="DialogueScene.cs" />
     <Compile Include="InteractableObject\InteractableObject.cs" />
     <Compile Include="Interfaces.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="Manager\GameManager.cs" />
     <Compile Include="InteractableObject\NPC.cs" />
     <Compile Include="InteractableObject\Monster.cs" />
