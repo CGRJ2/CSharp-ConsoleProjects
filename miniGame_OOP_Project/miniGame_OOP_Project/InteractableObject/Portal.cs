@@ -14,7 +14,7 @@ namespace miniGame_OOP_Project
 
         public Portal(Position portalPos, Position outPos, string outMap)
         {
-            interactScript = $"이동 -> {outMap}";
+            interactScript = $"이동(G): {outMap}";
             PortalPos = portalPos;
             this.outPos = outPos;
             this.outMap = outMap;

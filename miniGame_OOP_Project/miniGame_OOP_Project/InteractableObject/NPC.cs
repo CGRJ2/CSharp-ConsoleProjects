@@ -17,7 +17,7 @@ namespace miniGame_OOP_Project
 
         public NPC(string name, Position originPos)
         {
-            interactScript = $"{name} (NPC)";
+            interactScript = $"대화(G): {name}";
             this.name = name;
             this.npcPos = originPos;
             this.scripts = NPCScripts.Instance.npcScripts[name];

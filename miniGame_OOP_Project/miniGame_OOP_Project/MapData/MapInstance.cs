@@ -10,7 +10,7 @@ namespace miniGame_OOP_Project
     public class TileType
     {
         public EnumTileTypes type;
-        public InteractableObject interactable { get; private set; }
+        public InteractableObject interactable { get; set; }
 
         public TileType (EnumTileTypes type, InteractableObject interactable)
         {
@@ -25,6 +25,7 @@ namespace miniGame_OOP_Project
         public MapData nowMap;
         public List<Portal> portals = new List<Portal>();
         public List<NPC> npcs = new List<NPC>();
+        public List<Monster> monsters = new List<Monster>();
         public TileType[,] checkWays; // 여기에 npc/몬스터 위치 갱신
 
         
@@ -48,6 +49,7 @@ namespace miniGame_OOP_Project
                     nowMap = MapDic.Instance.GetMap("Field");
                     portals.Add(new Portal(new Position(1, 2), new Position(13 -1, 2), "Village")); // 나올때 왼쪽으로 나옴 -1
                     npcs.Add(new NPC("기사", new Position(10, 6)));
+                    monsters.Add(MonsterDic.Instance.SpawnMonster("슬라임", new Position(3,10)));
                     break;
             }
 
@@ -84,8 +86,12 @@ namespace miniGame_OOP_Project
                 ways[npcs[i].npcPos.y, npcs[i].npcPos.x] = new TileType(EnumTileTypes.npc, npcs[i]); 
             }
 
+            // monster
+            for (int i = 0; i < monsters.Count; i++)
+            {
+                ways[monsters[i].monsterPos.y, monsters[i].monsterPos.x] = new TileType(EnumTileTypes.monster, monsters[i]);
+            }
 
-            // monster 위치는 tileType.monster
 
             return ways;
         }
@@ -107,6 +113,11 @@ namespace miniGame_OOP_Project
             for (int i = 0; i < npcs.Count; i++)
             {
                 npcs[i].PrintNPC();
+            }
+
+            for (int i = 0; i < monsters.Count; i++)
+            {
+                monsters[i].PrintMonster();
             }
         }
     }
