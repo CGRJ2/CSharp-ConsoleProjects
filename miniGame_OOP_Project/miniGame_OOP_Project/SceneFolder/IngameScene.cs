@@ -111,6 +111,8 @@ namespace miniGame_OOP_Project
             Console.SetCursorPosition(uiStartX, uiStartY++);
             Console.Write($"│ 방어력:{player.defence,6}│");
             Console.SetCursorPosition(uiStartX, uiStartY++);
+            Console.Write($"│ map:  {gm.mapInstance.nowMap.name,7}│");
+            Console.SetCursorPosition(uiStartX, uiStartY++);
             Console.Write("└──────────────┘");
             Console.SetCursorPosition(uiStartX, uiStartY++);
 
@@ -128,7 +130,7 @@ namespace miniGame_OOP_Project
         {
             Player player = gm.player;
             int uiStartX = 32;
-            int uiStartY = 13;
+            int uiStartY = 14;
 
             Console.SetCursorPosition(uiStartX + 2, uiStartY++);
 

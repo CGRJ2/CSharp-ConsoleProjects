@@ -13,7 +13,7 @@ namespace miniGame_OOP_Project
         string[] scripts;
         int scriptIndex = 0;
         int uiPosX = 32;
-        int uiPosY = 16;
+        int uiPosY = 17;
 
         public NPC(string name, Position originPos)
         {

@@ -68,8 +68,6 @@ namespace miniGame_OOP_Project
                         Console.Write($"{dropTable[i].item.Name} 획득!");
                     }
                 }
-                
-
 
                 //Dead();
             }
